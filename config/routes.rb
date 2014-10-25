@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  resources :cards
 
-  resources :projects
+  resources :projects do
+  	resources :cards
+  end
 
   root to: 'visitors#index'
   devise_for :users
