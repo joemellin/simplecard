@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'card_viewer/get'
+
   resources :projects do
   	resources :cards
   end
