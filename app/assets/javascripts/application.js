@@ -15,4 +15,14 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require angular/angular
+//= require angular-animate/angular-animate
+//= require angular-cookies/angular-cookies
+//= require angular-resource/angular-resource
+//= require angular-route/angular-route
+//= require angular-sanitize/angular-sanitize
+//= require angular-touch/angular-touch
+//= require angular-ui-router/release/angular-ui-router
+//= require underscore/underscore
+//= require famous/dist/famous-global
+//= require famous-angular/dist/famous-angular
 //= require_tree .
