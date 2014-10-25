@@ -3,7 +3,9 @@
 %p
   %b Name:
   = @project.name
-
+= link_to "+ Add Card", new_project_card_path(@project), :class => "btn btn-default ", :style => "margin-top:10px; width:115px;"
 = link_to 'Edit', edit_project_path(@project)
 \|
 = link_to 'Back', projects_path
+
+

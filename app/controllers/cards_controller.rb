@@ -2,7 +2,7 @@ class CardsController < ApplicationController
   before_action :set_card, only: [:show, :edit, :update, :destroy]
   before_filter :load_project
   respond_to :html, :xml, :json
-  
+
   def index
     @cards = @project.cards.all
     respond_with(@cards)
@@ -13,6 +13,8 @@ class CardsController < ApplicationController
     respond_with(@card)
   end
 
+
+
   def new
     @card = @project.cards.new
     respond_with(@card)
@@ -22,9 +24,17 @@ class CardsController < ApplicationController
   end
 
   def create
+
     @card = @project.cards.new(card_params)
-    @card.save
-    respond_with(@card)
+    respond_to do |format|
+      if @card.save
+        format.html { redirect_to project_path(@project) }
+        format.json { render :show, status: :created, location: @card }
+      else
+        format.html { render :new }
+        format.json { render json: @card.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update
@@ -42,9 +52,10 @@ class CardsController < ApplicationController
       @card = Card.find(params[:id])
     end
     def load_project
-       @project = Project.find[:idea_id]
+       @project = Project.find(params[:project_id])
+
     end
     def card_params
-      params.require(:card).permit(:name, :body)
+      params.require(:card).permit(:name, :body, :project_id)
     end
 end
