@@ -1,9 +1,16 @@
 %p#notice= notice
 
 %p
-  %b Name:
-  = @project.name
+	%b Name:
+	= @project.name
 = link_to "+ Add Card", new_project_card_path(@project), :class => "btn btn-default ", :style => "margin-top:10px; width:115px;"
+
+
+-unless @project.cards.first.nil?
+	- @project.cards.sort { |b,a| a.created_at <=> b.created_at }.each do |card|
+		%h2=card.name 
+		%p=card.body		
+		%hr 
 = link_to 'Edit', edit_project_path(@project)
 \|
 = link_to 'Back', projects_path
